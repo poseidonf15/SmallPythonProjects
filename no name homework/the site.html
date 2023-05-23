@@ -1,0 +1,483 @@
+
+<!-- saved from url=(0106)http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=turtle/while.inc.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta name="page-topic" content="TigerJython">
+<meta name="keywords" content="python, jython, programming, tutorial">
+<meta name="audience" content="Teacher, Students">
+<meta name="description" content="Introduction to programming">
+<link rel="shortcut icon" href="http://www.tigerjython.ch/engl/tigerjython.ico">
+<link href="./the site_files/tigerjython.css" rel="stylesheet" type="text/css">
+<!--[if IE]>
+    <style type="text/css">@import url(tigerjython_ie.css);</style>
+  <![endif]-->
+<script type="text/javascript">
+var txt = "neuer <b>fetter<\/b> Text";
+
+function selectText(element) 
+{
+    var doc = document;
+    var text = doc.getElementById(element);    
+
+    if (doc.body.createTextRange)  // ms
+	{ 
+        var range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } 
+	else if (window.getSelection)  // moz, opera, webkit
+	{
+        var selection = window.getSelection();            
+        var range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+</script><title>While loops </title>
+
+<script src="./the site_files/validate.js.download"></script> 
+</head>
+
+<body>
+ <div id="wrapper">
+   <div style="width:1024px;height:100%;background-color: ffffff;">
+
+<div id="language"> 
+  <a href="http://www.tigerjython.ch/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=turtle/while.inc.php">deutsch</a> &nbsp;&nbsp; &nbsp;english&nbsp;&nbsp; &nbsp;<a href="http://www.tigerjython.ch/franz/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=turtle/while.inc.php">français</a> 
+&nbsp;&nbsp;&nbsp;
+<a href="http://www.tigerjython.ch/engl/drucken.php?inhalt_mitte=turtle/while.inc.php" target="_blank">Print</a> 
+</div> 
+<div id="search"> 
+<form method="get" action="http://clab6.phbern.ch/search/searchme.php" name="searchform" onsubmit="return checkIfEmptySearch();">
+   <input type="text" name="search" size="23">
+   <input type="hidden" name="inc" value="programmierkonzepteengl.inc">
+   <input type="hidden" name="home" value="http://www.programmierkonzepte.ch/engl/index.php">
+   <input type="submit" value="Search">  
+</form>
+ 
+</div>
+
+ <div id="inhalt_links"> 
+	    <div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=home/home.inc.php">Home </a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=lernumgebung/lernumgebung.inc.php">Learning Environment</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=turtle/turtle.inc.php">Turtle Graphics</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=grafik/grafik.inc.php">2D Graphics &amp; Pictures</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=sound/sound.inc.php">Sound</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=robotik/robotik.inc.php">Robotics</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=internet/internet.inc.php">Internet</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=gamegrid/gamegrid.inc.php">Games &amp; OOP</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=simulationen/experimente.inc.php">Computer Experiments</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=datenbanken/datenbanken.inc.php">Databases &amp; SQL</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=effizienz/effizienz.inc.php">Efficiency &amp; Limitations</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=anhang/anhang.inc.php">Appendix</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=anhang/links.inc.php">Literature &amp; Links</a></div>
+<div class="fstLevel"><a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=home/kontakt.inc.php">Contact</a></div>
+
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" title="Tigerjython Forum" style="color:#000000;text-decoration:none" href="http://clab6.phbern.ch/tigerjythonforum/forum.jsp"><em>Forum</em></a>  
+      
+    </div>
+    <div id="inhalt_mitte">  
+  		<!--While loops -->
+<p>&nbsp;</p>
+<h2>2.8 WHILE LOOPS </h2>
+<p><img src="./the site_files/rot.png" width="700" height="5"></p>
+<p>&nbsp;</p>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>INTRODUCTION</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td><p>You have already gotten to know the command <em>repeat</em>,  with which you can repeat a program block several times. However, it is  important to know that you can only use <em>repeat</em> this way in TigerJython and not in other Python flavours.  On the other hand, you can use the <em>while </em>structure everywhere. <br>
+The <em>while </em>loop is initiated with the keyword <em>while</em>,  followed by a looping condition. The instructions in the loop block are  repeated as long as the condition is fulfilled. The program then continues on  with the next statement listed after the loop block.</p>
+      <spam class="kb">
+   PROGRAMMING CONCEPTS:</spam>
+   <em>Iteration, while structure, combined conditions,  loop termination</em><br>
+    </td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>SPIDER WEB</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td valign="bottom">
+    <table width="100%" border="0">
+      <tbody><tr>
+        <td width="59%" align="justify" valign="top">
+          <p>The turtle should draw a rectangular spiral with the  help of a <em>while </em>loop. We will use a variable <em>a</em>, with an <a href="javascript:selectText(&#39;Tu8a_0&#39;)">initial value 5</a>which is then <a href="javascript:selectText(&#39;Tu8a_1&#39;)">increased by 2</a> with each iteration of the loop. As long as the  <a href="javascript:selectText(&#39;Tu8a_2&#39;)">condition  a &lt; 200</a> is true, the statements in the loop block will be  executed.</p>
+          <p> To make it a bit more fun, you can switch out the  turtle icon for a spider.</p></td>
+        <td width="5%">&nbsp;</td>
+        <td width="36%" valign="top"><div align="right">
+          <img src="./the site_files/Tu8a.png" width="211" height="206"><br>
+          <br>
+
+        </div></td>
+      </tr>
+    </tbody></table>
+      <div id="Tu8a"><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">from</span> gturtle <span style="color: #0000ff">import</span> *
+
+<span id="Tu8a_3">makeTurtle(<span style="color: #a31515">"sprites/spider.png"</span>)</span>
+
+<span id="Tu8a_0">a = 5</span>
+<span id="Tu8a_2"><span style="color: #0000ff">while</span> a &lt; 200:</span>
+    forward(a)
+    right(90)
+  <span id="Tu8a_1">  a = a + 2 </span>
+</pre>
+</div>
+ </div>
+      <a href="javascript:selectText(&#39;Tu8a&#39;)"><strong>Highlight program code</strong></a>
+          <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>
+      <p>&nbsp;</p>    </td></tr>
+</tbody></table>
+  <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>MEMO</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td>
+      <div class="tg">
+        <p>A <em>while </em>loop is used to repeat a program block.  In order for the program block to be executed, the condition must be true.  Because of this, one might also call it a <em>"running condition</em>".  If the change in value is missing in the loop block, the running condition  always stays true and the program remains endlessly "hanging" in the  loop. </p>
+      In our learning  environment, you can cancel the hanging program with the stop button or by  closing the turtle window. In general, infinite loops without a the option to  cancel are dangerous, and in an extreme case you will have to reboot your  computer.</div>
+    </td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>COMBINING CONDITIONS WITH OR</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td>
+    <table width="100%" border="0">
+      <tbody><tr>
+        <td width="59%" valign="top" align="justify">
+          <p>The turtle should draw the adjacent figure using the <a href="javascript:selectText(&#39;Tu8b_0&#39;)">while loop. </a>As you can see, it is drawn with alternating red and  green triangles. </p>
+          <p> You can use the following trick to change the colors:  Test the loop variable to see whether it is 0, 2 or 4 and then choose the pen  color red. </p>
+          Using the command
+          <a href="javascript:selectText(&#39;Tu8b_2&#39;)">fillToPoint(0. 0)</a>
+          you can fill  a figure with color while drawing. In this case, it is as though a rubber band  was attached to the point (0, 0), the other end of which the turtle drags  along. All points the rubber band reaches along the way are colored  consecutively.</td>
+        <td width="5%">&nbsp;</td>
+        <td width="36%" valign="top"><div align="right">
+           <img src="./the site_files/Tu8b.png" width="211" height="206"><br><br>
+        </div></td>
+      </tr>
+    </tbody></table>
+      <div id="Tu8b"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">from</span> gturtle <span style="color: #0000ff">import</span> *
+
+<span style="color: #0000ff">def</span> triangle():
+    repeat 3: 
+        forward(100) 
+        right(120)
+ 
+makeTurtle()
+i = 0
+<span id="Tu8b_0"><span style="color: #0000ff">while</span> i &lt; 6:</span>
+    <span style="color: #0000ff">if</span> <span id="Tu8b_1">i == 0 or i == 2 or i == 4:</span>
+         setPenColor(<span style="color: #a31515">"red"</span>)
+    <span style="color: #0000ff">else</span>:
+         setPenColor(<span style="color: #a31515">"green"</span>)     
+
+    <span id="Tu8b_2">fillToPoint(0, 0)</span>
+    triangle()
+    right(60)
+    i = i + 1
+</pre>
+</div>
+ </div>
+      <a href="javascript:selectText(&#39;Tu8b&#39;)"><strong>Highlight program code</strong></a>
+          <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>
+       </td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+
+  <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>MEMO</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td>
+      <div class="tg">
+        <p>You must pay attention to the correct indentation for  each loop block when using several program structures.</p>
+        <p> As you can see, you can combine two or more conditions  using <em>or</em>. A condition linked this way is true if either of the  conditions are satisfied, and it is also true if both conditions are met.</p>
+      Using the command<em> fillToPoint(x, y)</em> you can fill figures with the pen color while drawing, as  opposed to the command<em> fill(), </em>with which you can fill already drawn  closed figures.</div></td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>COMBINING CONDITIONS WITH AND</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td valign="bottom">
+    <table width="100%" border="0">
+      <tbody><tr>
+        <td width="59%" valign="top" align="justify">
+          <p>The turtle should draw 10 connected houses using a <em>while </em>loop. The houses are numbered from 1 to 10. The houses with the numbers 4-7  are large, and all of the other houses are small.</p>
+          <p> In the <em>while </em>loop, the house number <em>nr</em> is used to determine the size of the houses. The houses are large if<em> nr</em> is greater than 3 and less than 8. </p>
+          We use the command
+          <a href="javascript:selectText(&#39;Tu8c_0&#39;)">fillToHorizontal(0)</a> to add color. 
+          As a result, the area between the drawn figure and the  horizontal line y = 0 is filled consecutively.<br></td>
+        <td width="5%">&nbsp;</td>
+        <td width="36%" valign="top"><div align="right">
+          <img src="./the site_files/Tu8c.png" width="211" height="206"><br><br>
+        </div></td>
+      </tr>
+    </tbody></table>
+      <div id="Tu8c"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">from</span> gturtle <span style="color: #0000ff">import</span> *
+
+makeTurtle()
+setPos(-200, 30)
+right(30)
+<span id="Tu8c_0">fillToHorizontal(0)</span>
+setPenColor(<span style="color: #a31515">"sienna"</span>)
+
+nr = 1
+<span id="Tu8c_3"><span style="color: #0000ff">while</span> nr &lt;= 10:</span>
+    <span id="Tu8c_1"><span style="color: #0000ff">if</span> nr &gt; 3 <span style="color: #0000ff">and</span> nr &lt; 8:</span>
+        forward(60)
+        right(120)
+        forward(60)
+        left(120)
+    <span style="color: #0000ff">else</span>:
+        forward(30)
+        right(120)
+        forward(30)
+        left(120)
+  
+    <span id="Tu8c_2">nr += 1</span>
+</pre>
+</div> </div>
+      <a href="javascript:selectText(&#39;Tu8c&#39;)"><strong>Highlight program code</strong></a>
+          <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>
+       </td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+
+  <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>MEMO</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td>
+      <div class="tg">
+        <p>You can link two conditions with <a href="javascript:selectText(&#39;Tu8c_1&#39;)">and</a>. Such a linked statement is only true if both  conditions are met.</p>
+
+        Using the command <a href="javascript:selectText(&#39;Tu8c_0&#39;)">fillToHorizontal(y)</a> you can fill figures with the pen color while drawing.  This way, the area between the drawn figure and the horizontal line at <em>y</em>&nbsp; is filled.
+<p><a href="javascript:selectText(&#39;Tu8c_2&#39;)">nr += 1</a> means that <em>nr</em> is increased by 1. It is just an  abbreviation for the assignment <em>nr = nr + 1</em>.</p>
+      </div></td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3><strong>EXITING LOOPS WITH BREAK</strong></h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td valign="bottom">
+    <table width="100%" border="0">
+      <tbody><tr>
+        <td width="59%" valign="top" align="justify">
+          <p>A loop whose condition is always true will loop  forever. However, you can force a loop to exit at any time using the keyword <a href="javascript:selectText(&#39;Tu8d_0&#39;)">break</a>. </p>
+          <p>Your program will draw rotated squares with increasing  side lengths until the side length is 120.</p>
+          <br></td>
+        <td width="5%">&nbsp;</td>
+        <td width="36%" valign="top"><div align="right">
+             <img src="./the site_files/Tu8d.png" width="211" height="206"><br>
+          <br>
+
+        </div></td>
+      </tr>
+    </tbody></table>
+      <div id="Tu8d"><!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.8em .8em;"><pre style="margin: 0; line-height: 125%"><span style="color: #0000ff">from</span> gturtle <span style="color: #0000ff">import</span> *
+
+<span style="color: #0000ff">def</span> square(sidelength):    
+    repeat 4: 
+        forward(sidelength) 
+        left(90)
+
+makeTurtle()
+hideTurtle()
+
+i = 0
+<span id="Tu8d_1"><span style="color: #0000ff">while</span> True:</span>
+    <span style="color: #0000ff">if</span> i &gt; 120:
+        <span id="Tu8d_0"><span style="color: #0000ff">break</span></span>
+    square(i)
+    right(6)
+    <span id="Tu8d_2">i += 2</span>
+<span style="color: #0000ff"><span id="Tu8d_3">print</span></span> <span style="color: #a31515">"i ="</span>, i
+</pre>
+</div> </div>
+      <a href="javascript:selectText(&#39;Tu8d&#39;)"><strong>Highlight program code</strong></a>
+          <spam class="tabklein">(Ctrl+C copy, Ctrl+V paste)</spam>
+    </td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+
+  <table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>MEMO</h3>
+  </td></tr>
+</tbody></table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td>
+      <div class="tg">
+        <p>Instead of using <a href="javascript:selectText(&#39;Tu8d_1&#39;)">while 1 == 1:</a> you can use <em>while</em> <em>True:</em>, since <em>True</em> is always true. (On the other hand, <em>False</em> is always false.)</p>
+        The loop is run in  increments of two. Instead of using i = i + 2 you should use the abbreviated  notion <a href="javascript:selectText(&#39;Tu8d_2&#39;)"> i&nbsp;+=&nbsp;2 </a> (<em>i</em> is incremented by 2).
+        <p>With the command <a href="javascript:selectText(&#39;Tu8d_3&#39;)">print</a>-you can write something into the TigerJython console  at the bottom of the editor. With text you should use quotation marks and  numbers should be separated by a comma. A space will automatically be inserted  between the text and the number. Do you understand why the output is <em>i</em> =  122?</p>
+      The keyword <strong><em>continue</em></strong> is rarely used. It skips the remaining part of the body of the loop.</div></td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table width="700px" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="50">&nbsp;</td>
+    <td width="30"><h3><img src="./the site_files/green.png" width="20" height="17"></h3></td>
+    <td><h3>EXERCISES</h3>
+  </td></tr>
+</tbody></table>
+
+<table width="700px" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td width="80">&nbsp;</td>
+    <td valign="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tbody><tr>
+        <td width="5%" valign="top"><br>
+          1.</td>
+        <td width="95%" valign="top"><br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td width="58%" valign="top"><p>The turtle moves forward on a line with length 5 and turns 70° to        the right. Then it increases the line length by 0.5 and repeats        these steps as long as the line length is smaller than 150.</p>
+                <p><span id="result_box3" lang="en" xml:lang="en">Try it also with the rotation angle of 89 °!</span></p>
+                </td>
+              <td width="9%">&nbsp;</td>
+              <td width="33%" valign="top"><img src="./the site_files/a8_1.png" width="140" height="140" border="1"></td>
+            </tr>
+          </tbody></table>
+          </td>
+      </tr>
+      <tr>
+        <td width="5%" valign="top"><br>
+          2.</td>
+        <td width="95%" valign="top"><br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td width="58%" valign="top"><p>As you probably noticed, the rotation angle at a tip  of the 5 edged star is 144°. Change this rotation angle by just a little bit,  for example to 143°, and increase the number of repetitions. You will then get  a new figure.</p></td>
+              <td width="9%">&nbsp;</td>
+              <td width="33%" valign="top"><img src="./the site_files/a8_2.png" width="140" height="140" border="1"></td>
+            </tr>
+          </tbody></table>
+          </td>
+      </tr>
+      <tr>
+        <td width="5%" valign="top"><br>
+          3.</td>
+        <td width="95%" valign="top"><br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td width="58%" valign="top"><p><span id="result_box" lang="en" xml:lang="en">The turtle draws a diagonal pattern with filled red circles. All circles are located in the Turtle window, which means that the distance from the center is less than 400.</span></p>
+                <p><span id="result_box4" lang="en" xml:lang="en">Use the command dot(25)</span> <span id="result_box5" lang="en" xml:lang="en">for creating the circles</span>.</p></td>
+              <td width="9%">&nbsp;</td>
+              <td width="33%" valign="top"><img src="./the site_files/a8_3.png" width="140" height="143" border="1"></td>
+            </tr>
+          </tbody></table>
+          </td>
+      </tr>
+       <tr>
+        <td width="5%" valign="top"><br>
+          4.</td>
+        <td width="95%" valign="top"><br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td width="58%" valign="top"><p><span id="result_box2" lang="en" xml:lang="en">The turtle is located at the position (250, 200).  With steps of length 10, the turtle moves on a straight line to the home position until the distance  is less than 1.<br>
+                    <br>
+Use the commands <em>towards()</em> and <em>heading(degrees)</em> (see  <a href="http://www.tigerjython.ch/engl/index.php?inhalt_links=navigation.inc.php&amp;inhalt_mitte=turtle/turtledoc.html">documentation</a>).</span></p></td>
+              <td width="9%">&nbsp;</td>
+              <td width="33%" valign="top"><img src="./the site_files/a8_4.png" width="140" height="140" border="1"></td>
+            </tr>
+          </tbody></table>
+          </td>
+      </tr>
+       <tr>
+        <td width="5%" valign="top"><p><br>
+        5*.</p>
+          <p><br>
+            </p></td>
+        <td width="95%" valign="top"><br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td width="58%" valign="top"><p><span id="result_box2" lang="en" xml:lang="en"><span id="result_box6" lang="en" xml:lang="en">In order to stop the turtle more precisely  at home, you decrease the distance by a factor 10 to 100. Unfortunately it may happen  that the turtle does not stop anymore. Can you explain this behavior?</span><br>
+                    <br>
+              </span></p></td>
+              <td width="9%">&nbsp;</td>
+              <td width="33%" valign="top">&nbsp;</td>
+            </tr>
+          </tbody></table>
+          </td>
+      </tr>
+    </tbody></table>  </td>
+</tr></tbody></table>
+<p>&nbsp;</p>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+	
+	</div> 
+	   	
+	
+       
+</div>	
+
+
+</div></body></html>

@@ -1,0 +1,13 @@
+function checkIfEmptySearch()
+{
+  x = document.forms["searchform"]["search"].value;
+  if (x == "" || x == null) 
+  {
+     alert("Geben Sie einen Suchbegriff ein.");
+     return false;
+  }
+  else
+  {
+	 return true; 
+  }
+}

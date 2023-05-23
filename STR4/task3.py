@@ -1,0 +1,6 @@
+line = input("Enter the line. : ")
+letters = input("Enter the replace letter : ")
+string = line.replace(letters[0],letters[-1])
+letters2 = letters.lower()
+string = line.replace(letters2[0],letters[-1])
+print (string)
